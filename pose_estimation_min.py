@@ -26,8 +26,6 @@ while True:
             height, width, channel = img.shape
             cx, cy = int(landmark.x * width), int(landmark.y * height)
 
-            print(f'id: {id}\nlandmark: {landmark}')
-
             cv2.circle(img, (cx, cy), 10, (255, 0, 0))
 
     curr_time = time.time()
