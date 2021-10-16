@@ -22,6 +22,8 @@ class pose_detector():
 
         if results.pose_landmarks:
 
+            self.mp_draw.draw_landmarks(img, results.pose_landmarks, self.mp_pose.POSE_CONNECTIONS)
+
             for id, landmark in enumerate(results.pose_landmarks.landmark):
 
                 height, width, channel = img.shape
@@ -29,7 +31,6 @@ class pose_detector():
                 lm_list.append([id, cx, cy])
 
                 if draw:
-                    self.mp_draw.draw_landmarks(img, results.pose_landmarks, self.mp_pose.POSE_CONNECTIONS)
                     cv2.circle(img, (cx, cy), 10, (255, 0, 0))
 
         if lm_id != None:
@@ -42,7 +43,7 @@ class pose_detector():
         if fps:
             curr_time = time.time()
             fps = 1/(curr_time - self.prev_time)
-            prev_time = curr_time
+            self.prev_time = curr_time
 
 
         cv2.putText(
