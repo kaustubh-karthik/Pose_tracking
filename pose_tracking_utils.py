@@ -4,10 +4,11 @@ import numpy as np
 import time
 class pose_detector():
     def __init__(self, mode = False, max_hands = 2, detection_conf = 0.5, track_conf = 0.5):
-        # Do i need variables? -- Check for static
+        # Do i need self variables? -- Check for static
         self.mp_draw = mp.solutions.drawing_utils
         self.mp_pose = mp.solutions.pose
         self.pose = self.mp_pose.Pose()
+
         self.prev_time = 0
 
 
