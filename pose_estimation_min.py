@@ -8,7 +8,7 @@ mp_pose = mp.solutions.pose
 pose = mp_pose.Pose()
 
 
-video = cv2.VideoCapture('/Users/kaustubhkarthik/Documents/Tensorflow-projects/pose_tracking/Pose_videos/pexels-artem-podrez-8992774.mp4')
+video = cv2.VideoCapture('Pose_videos/pexels-kampus-production-8636818.mp4')
 
 prev_time = 0
 
@@ -20,6 +20,15 @@ while True:
 
     if results.pose_landmarks:
         mp_draw.draw_landmarks(img, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
+
+        for id, landmark in enumerate(results.pose_landmarks.landmark):
+
+            height, width, channel = img.shape
+            cx, cy = int(landmark.x * width), int(landmark.y * height)
+
+            print(f'id: {id}\nlandmark: {landmark}')
+
+            cv2.circle(img, (cx, cy), 10, (255, 0, 0))
 
     curr_time = time.time()
     fps = 1/(curr_time - prev_time)
